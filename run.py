@@ -46,7 +46,7 @@ def main():
         "-e", "MINIDLNA_INOTIFY=%s" % inotify,
         image
         ]
-    print "Launching docker with args %s" % docker_args
+    sys.stderr.write("Launching docker with args %s\n" % docker_args)
     subprocess.call(docker_args)
 
 
