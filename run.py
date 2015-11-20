@@ -26,10 +26,10 @@ def main():
                              'container\'s listening port')
     parser.add_argument('--name',
                         help='Friendly name for the DLNA server')
-    parser.add_argument('--root',
-                        help='Root directory to be served')
     parser.add_argument('--inotify', action='store_true',
                         help='Enable inotify monitoring of new media')
+    parser.add_argument('root', nargs=1,
+                        help='Root directory to be served')
 
     args = parser.parse_args(sys.argv[1:])
     image = "%s/minidlna" % os.getenv("USER")
@@ -38,7 +38,7 @@ def main():
         inotify = "yes"
     docker_args = [
         "docker", "run", "-d", "--name", "minidlna", "--net=host",
-        "-v", "%s:/media" % args.root,
+        "-v", "%s:/media" % args.root[0],
         "-e", "MINIDLNA_MEDIA_DIR=/media",
         "-e", "MINIDLNA_LISTENING_IP=%s" % args.address,
         "-e", "MINIDLNA_PORT=%d" % args.port,
