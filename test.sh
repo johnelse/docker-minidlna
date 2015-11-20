@@ -6,9 +6,10 @@ make
 
 mkdir -p /tmp/media
 
-CONTAINER=`./run.py --root /tmp/media \
+CONTAINER=`./run.py \
     --name travis \
-    --inotify`
+    --inotify \
+    /tmp/media`
 
 sleep 5
 
