@@ -33,9 +33,7 @@ def main():
 
     args = parser.parse_args(sys.argv[1:])
     image = "%s/minidlna" % os.getenv("USER")
-    inotify = "no"
-    if args.inotify:
-        inotify = "yes"
+    inotify = "yes" if args.inotify else "no"
     docker_args = [
         "docker", "run", "-d", "--name", "minidlna", "--net=host",
         "-v", "%s:/media" % args.root[0],
