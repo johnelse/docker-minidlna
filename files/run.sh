@@ -15,4 +15,4 @@ done
 echo "log_dir=/var/log" >> /etc/minidlna.conf
 echo "log_level=debug" >> /etc/minidlna.conf
 
-exec /usr/bin/minidlna -d $@
+exec /usr/sbin/minidlnad -d $@
